@@ -12,7 +12,7 @@ with col1:
     st.write("Welcome to AIde — an AI-powered tool for analyzing business trends using your P&L and utilization data.")
 with col2:
     try:
-        st.image(r"C:/Users/Nasar_khan/OneDrive/Desktop/SE logo.png", width=200)
+        st.image(r"SE logo.png", width=200)
     except FileNotFoundError:
         st.warning("Logo image not found. Please check the file path.")
 
@@ -20,7 +20,7 @@ with col2:
 @st.cache_data
 def load_data():
     try:
-        file_path = r"C:/Users/Nasar_khan/Downloads/OPS MIS_BRD 3_V1.1 (1).xlsx"
+        file_path = r"OPS MIS_BRD 3_V1.1 (1).xlsx"
         df = pd.read_excel(file_path, sheet_name="P&L")
         df['Month'] = pd.to_datetime(df['Month'], errors='coerce')
         df['Quarter_Year'] = "Q" + df['Month'].dt.quarter.astype(str) + df['Month'].dt.year.astype(str)
@@ -207,3 +207,4 @@ if not df.empty:
         agg_df['Margin %'] = agg_df['Margin %'].map(lambda x: f"{x:.1f}%")
 
         st.dataframe(agg_df, use_container_width=True)
+
